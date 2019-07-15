@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<title>GPS Project</title>
+
+	<script src="https://cdn.pubnub.com/sdk/javascript/pubnub.4.21.7.js"></script>
+  <script src="../addons/p5.min.js"></script>
+  <script src="../addons/p5.dom.min.js"></script>
+
+<link rel="stylesheet" type="text/css" href="IOT.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
+
+<ul>
+	<li><a class="active" href="#Map">Map</a></li>
+	<li><a href=test2.html>Graph</a></li>
+</ul>
+
+
+</head>
+
+<body>
+
+	<div class="heading">
+	  <h2>UWE MAP</h2>
+	  <p>See where you have been</p>
+	</div>
+
+<div class = "map">
+<script src="app.js"></script>
+</div>
+
+<div class="dataReport">
+	<h3>Report:</h3>
+</div>
+
+<div class="dataTable">
+
+
+<table>
+  <tr>
+		<th>Block:</th>
+    <th>Latitide:</th>
+    <th>Date:</th>
+  </tr>
+  <tr onClick = ("blockClick")>
+		<td id ="0block"> </td>
+    <td id ="0"> </td>
+    <td id ="0time"> </td>
+  </tr>
+  <tr>
+		<td id ="1block"> </td>
+    <td id ="1"> </td>
+    <td id ="1time"> </td>
+  </tr>
+  <tr>
+		<td id ="2block"> </td>
+    <td id ="2"> </td>
+    <td id ="2time"> </td>
+  </tr>
+  <tr>
+		<td id ="3block"> </td>
+    <td id ="3"> </td>
+    <td id ="3time"> </td>
+  </tr>
+</table>
+</div>
+
+</body>
+
+
+<footer>
+</footer>
+
+</html>

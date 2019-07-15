@@ -1,0 +1,71 @@
+
+html, body {
+  font-family: 'Montserrat';
+  height: 100%;
+}
+
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+}
+
+li {
+  float: left;
+}
+
+li a { /*nav bar */
+  display: block;
+  color: black;
+  text-align: center;
+  padding: 3px 16px;
+  font-family: 'Montserrat'; font-size: 24px;
+  text-decoration: none;
+}
+
+li a.active { /*active nav bar page */
+  background-color: #FAED27;
+}
+
+
+.heading { /* Page heading */
+  background-color: #ddd;
+  padding-bottom:20px;
+  padding-top:10px;
+
+  text-align: center;
+  font-size: 24px;
+  width:100% ;
+  height: 85%;
+}
+
+.map{
+    padding-bottom: -800px;
+}
+
+.dataReport { /* Report table */
+  background-color: yellow;
+  padding: 30px;
+  float: left;
+  font-size: 24px;
+  height:4%;
+  width: 100%;
+}
+
+table {
+  background-color: yellow;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+th, td {
+
+  padding-top: 20px;
+  padding-bottom: 30px;
+  padding-left: 30px;
+  text-align: left;
+  border-bottom: 2px solid #ddd;
+}
+
+tr:hover {background-color:grey;}
