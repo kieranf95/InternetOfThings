@@ -35,19 +35,18 @@ SoftwareSerial serial_connection(10,11);
 TinyGPSPlus gps;
 
 
-const int buttonPin = 2;  
-int buttonState = 0;
-const int ledPin =  13; 
+const int buttonPin = 2;  //pin of button on board
+int buttonState = 0; // button state initialised as 0 / off
+const int ledPin =  13; // pin of onboard LED
 
-int melody [] = {NOTE_C4, NOTE_G3};
-int noteDurations [] = {4,8};
+int melody [] = {NOTE_C4, NOTE_G3}; //notes of melody from pitches.h
+int noteDurations [] = {4,8}; //length of respective notes
 
-byte mac[] = {0x00, 0x0E, 0xEF, 0x00, 0x00, 0x34}; 
-// do not change the 0x00 0x0E 0xEF 0x00 0x00 prefix
+byte mac[] = {0x00, 0x0E, 0xEF, 0x00, 0x00, 0x34}; //mac adress
 
 
-char pubkey[] = "pub-c-2c220cbd-828d-4ead-b86d-07533e2034c9";
-char subkey[] = "sub-c-71645706-99ca-11e9-9ac8-0ed882abeb26";
+char pubkey[] = "pub-c-2c220cbd-828d-4ead-b86d-07533e2034c9"; //publish key 
+char subkey[] = "sub-c-71645706-99ca-11e9-9ac8-0ed882abeb26"; 
 char channel[] = "iotchannel";
 
 void setup()
@@ -59,11 +58,11 @@ void setup()
   Serial.println("Serial set up");
 
   
-  pinMode(buttonPin, INPUT);
-  pinMode(ledPin,OUTPUT);
+  pinMode(buttonPin, INPUT); //button is set as INPUT
+  pinMode(ledPin,OUTPUT); // LED is set as OUTPUT
 
-  PubNub.begin(pubkey, subkey);
-  Serial.println("PubNub set up");
+  PubNub.begin(pubkey, subkey); 
+  Serial.println("PubNub set up"); // to verify that pubnub has been setup
 }
 
 
@@ -80,11 +79,10 @@ void loop()
 
 buttonState = digitalRead(buttonPin);
 if (buttonState == HIGH) {
-  digitalWrite(ledPin, HIGH);
-
-
+  
+  digitalWrite(ledPin, HIGH); //Turns on light
     
-    for (int thisNote = 0; thisNote <2; thisNote++){ 
+    for (int thisNote = 0; thisNote <2; thisNote++){  //play melody
       int noteDuration = 1000 / noteDurations [thisNote];
       tone (8,melody [thisNote], noteDuration);
 
@@ -95,7 +93,7 @@ if (buttonState == HIGH) {
     
   } else {
     // turn LED off:
-    digitalWrite(ledPin, LOW);
+    digitalWrite(ledPin, LOW); //light is off when button is not pressed
   }
   
 
@@ -104,14 +102,12 @@ if (buttonState == HIGH) {
     gps.encode(serial_connection.read());
   }
 
-  if(gps.location.isUpdated()  && buttonState == HIGH)
+  if(gps.location.isUpdated()  && buttonState == HIGH) //if gps is retrieving data from satellite and the button is pushed
 {
 
   Serial.println("Satellite Count:");
   Serial.println(gps.location.lat(),3);
   
- // char msg[64] = "{\"eon\":{\"sensor\":";
-//char latt[64] = "{\0\":";
 
 
  char msg[24] = "{\"eon\":{\"latitude\":"; //[24] = length to save for lenght of string
@@ -122,15 +118,8 @@ if (buttonState == HIGH) {
 
 
  
-    //sprintf(msg + strlen(msg), msa);
-   //dtostrf(gps.location.lat(),2,2,msa);
-   //strcat(msg, "}}");
-// {"eon":{"sensor":{"eon":{"sensor":}}
 
-
-
-
-  dtostrf(gps.location.lat(),2,2,msglat);
+  dtostrf(gps.location.lat(),2,2,msglat); // converts to string 
   dtostrf(gps.location.lng(),3,3,mslng);
   //dtostrf(gps.location.lat(),2,2,msg);
 
@@ -139,20 +128,14 @@ Serial.println(msg);
 
   
   
-   //sprintf(msg2 + strlen(msg2), msglat);
+   
    sprintf(msg + strlen(msg), msglat);
     
-   strcat (msg, "}}");
+   strcat (msg, "}}"); //concatonates string 
 
 
   
-// 51.49-2.59}}
 
-//Serial.println(prefix);
-    
-  //dtostrf(gps.location.lat(),2,2,latt);
-  //sprintf(msg + strlen(msg), latt);
- // strcat(msg, "}}");
 
 
 while (!Ethernet.begin(mac)) 
